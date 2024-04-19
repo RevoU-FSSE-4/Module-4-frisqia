@@ -5,26 +5,34 @@ import ButtonComponent from "./ButtonComponent";
 import InputComponent from "./InputComponent";
 
 function App() {
-  const [username, setUsername] = useState<string>("haii");
+  let nama = "submit";
+  let inputLabel = "Unsername: ";
+  let inputLabel1 = "Password: ";
+  const [username, setUsername] = useState<string>("welcome");
+  const [myArray, setMyArray] = useState<string[]>([
+    "cia",
+    "oji",
+    "fahmi",
+    "mpi",
+  ]);
+  function changeName(newUsername: string) {
+    setUsername(newUsername);
+  }
+  function arrayElement() {
+    myArray.push("abay");
+    console.log(myArray);
+  }
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          
-        </a> */}
-        <h1>Halo{username}</h1>
-        <InputComponent InputText={"your name"} />
-        <ButtonComponent buttonText={"hello"} />
+        <h1>sign in</h1>
+        <p>Hello {username}</p>
+        <InputComponent
+          inputLabel={inputLabel}
+          inputLabel1={inputLabel1}
+          changeName={changeName}
+        />
+        <ButtonComponent buttonText={nama} arrayElement={arrayElement} />
       </header>
     </div>
   );
