@@ -4,35 +4,41 @@ import "./App.css";
 import ButtonComponent from "./ButtonComponent";
 import InputComponent from "./InputComponent";
 
+interface FirstPage {
+  fullname: string;
+  email: string;
+}
+
 function App() {
-  let nama = "submit";
-  let inputLabel = "Unsername: ";
-  let inputLabel1 = "Password: ";
-  const [username, setUsername] = useState<string>("welcome");
-  const [myArray, setMyArray] = useState<string[]>([
-    "cia",
-    "oji",
-    "fahmi",
-    "mpi",
-  ]);
-  function changeName(newUsername: string) {
-    setUsername(newUsername);
-  }
-  function arrayElement() {
-    myArray.push("abay");
-    console.log(myArray);
+  const [userProfile, setUserProfile] = useState<FirstPage>({
+    fullname: "",
+    email: "",
+  });
+  function handleChangeUseProfile(
+    userProfileKey: string,
+    userProfileValue: string
+  ) {
+    setUserProfile((oldProfile) => {
+      return { ...oldProfile, [userProfileKey]: userProfileValue };
+    });
   }
   return (
     <div className="App">
       <header className="App-header">
-        <h1>sign in</h1>
-        <p>Hello {username}</p>
+        <h1>hello{userProfile.fullname}</h1>
+        <h1>your email{userProfile.email}</h1>
         <InputComponent
-          inputLabel={inputLabel}
-          inputLabel1={inputLabel1}
-          changeName={changeName}
+          userProfileKey="fullName"
+          userProfileValue={userProfile.fullname}
+          inputLabel="Name"
+          handleChangeUseProfile={handleChangeUseProfile}
         />
-        <ButtonComponent buttonText={nama} arrayElement={arrayElement} />
+        <InputComponent
+          userProfileKey="email"
+          userProfileValue={userProfile.email}
+          inputLabel="Email"
+          handleChangeUseProfile={handleChangeUseProfile}
+        />
       </header>
     </div>
   );
