@@ -18,14 +18,17 @@ const InputComponent: React.FC<InputComponentProps> = ({
 }) => {
   return (
     <>
-      <label>{inputLabel}</label>
-      <br />
-      <input
-        value={userProfileValue}
-        type="text"
-        id="my-input"
-        onChange={(e) => handleChangeUseProfile(userProfileKey, e.target.value)}
-      />
+      <div id="form">
+        <label>{inputLabel}</label>
+        <input
+          value={userProfileValue}
+          type="text"
+          id="my-input"
+          onChange={(e) =>
+            handleChangeUseProfile(userProfileKey, e.target.value)
+          }
+        />
+      </div>
     </>
   );
 };
