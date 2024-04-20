@@ -1,39 +1,31 @@
 import { log } from "console";
 import React from "react";
 interface InputComponentProps {
+  userProfileKey: string;
+  userProfileValue: string;
   inputLabel: string;
-  inputLabel1: string;
-  changeName: (newUsername: string) => void;
+  handleChangeUseProfile: (
+    userProfileKey: string,
+    userProfileValue: string
+  ) => void;
 }
 
 const InputComponent: React.FC<InputComponentProps> = ({
+  userProfileKey,
+  userProfileValue,
   inputLabel,
-  inputLabel1,
-  changeName,
+  handleChangeUseProfile,
 }) => {
   return (
     <>
-      <div>
-        <label>{inputLabel}</label>
-        <br />
-        <input
-          type="text"
-          id="name"
-          placeholder="unsername"
-          onChange={(e) => {
-            changeName(e.target.value);
-          }}
-        ></input>
-      </div>
-      <div>
-        <label>{inputLabel1}</label>
-        <br />
-        <input
-          type="password"
-          id="password"
-          placeholder="Input Your password"
-        ></input>
-      </div>
+      <label>{inputLabel}</label>
+      <br />
+      <input
+        value={userProfileValue}
+        type="text"
+        id="my-input"
+        onChange={(e) => handleChangeUseProfile(userProfileKey, e.target.value)}
+      />
     </>
   );
 };
