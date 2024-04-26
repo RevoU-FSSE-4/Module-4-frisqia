@@ -1,0 +1,63 @@
+///Local Storage
+// Storing data in Local Storage
+localStorage.setItem('username', 'John');
+localStorage.setItem('isLoggedIn', 'true');
+
+// Retrieving data from Local Storage
+const username = localStorage.getItem('username');
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+console.log(username); // Output: "John"
+console.log(isLoggedIn); // Output: "true"
+
+// Removing an item from Local Storage
+localStorage.removeItem('isLoggedIn');
+
+// Clearing all data from Local Storage
+localStorage.clear();
+
+///Session Storage
+// Storing data in Session Storage
+sessionStorage.setItem('language', 'English');
+sessionStorage.setItem('theme', 'dark');
+
+// Retrieving data from Session Storage
+const language = sessionStorage.getItem('language');
+const theme = sessionStorage.getItem('theme');
+
+console.log(language); // Output: "English"
+console.log(theme); // Output: "dark"
+
+// Removing an item from Session Storage
+sessionStorage.removeItem('theme');
+
+// Clearing all data from Session Storage
+sessionStorage.clear();
+
+///Cookies
+// Setting a cookie
+document.cookie = "username=John Doe; expires=Thu, 15 Jun 2023 12:00:00 UTC; path=/";
+
+// Retrieving a cookie
+const cookies = document.cookie;
+console.log(cookies); // Output: "username=John Doe; otherCookie=value"
+
+// Retrieving a specific cookie
+function getCookie(name) {
+  const cookieString = document.cookie;
+  const cookies = cookieString.split("; ");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].split("=");
+    if (cookie[0] === name) {
+      return cookie[1];
+    }
+  }
+
+  return null;
+}
+
+const username = getCookie("username");
+console.log(username); // Output: "John Doe"
+
+export default LocalStorage

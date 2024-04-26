@@ -1,0 +1,20 @@
+bangun fondasi HTML, struktur untuk situs web responsif Anda.
+
+Tugas.
+
+buat struktur HTML untuk situs web responsif Anda. Fokus pada komponen berikut.
+1. Struktur halaman dan semantik:
+-implementasi struktur dasar halaman web Anda menggunakan tag HTML.
+-Pastikan penggunaan semantik yang benar untuk setiap elemen HTML.
+2.Isi:
+-tambahkan konten yang relevan ke situs web Anda. Ini bisa berupa informasi tentang topik pilihan Anda atau placeholder jika kontennya belum selesai.
+3. Kumpulan formulir:
+-membuat kumpulan formulir yang mencakup:
+-- input type text
+-- Textarea
+-- submit
+-- one of the radio buttons, checkboxex, and select
+4. buat readme.md di repositori dan jelaskan apa yang akan Anda buat, ini termasuk:
+-heading
+-paragraph
+-image

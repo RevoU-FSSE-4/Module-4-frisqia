@@ -18,7 +18,7 @@ function LoginPage() {
   function ChangePage(target: string) {
     navigate(target);
   }
-  async function handleRegister(terget: string) {
+  async function handleRegister(target: string) {
     try {
       const body = {
         email: credential.email,
