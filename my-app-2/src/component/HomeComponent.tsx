@@ -8,8 +8,7 @@ import ExTwoComp from "./ExTwoComp";
 import PropsOneComp from "./PropsOneComp";
 import MyPage from "./ButEx";
 import MyPages from "./ButEx2";
-import MyPageTwo from "./butEx3";
-
+import MyPageTwo from "./buttonValidation";
 
 const HomeComponent = () => {
   function handleClick() {
@@ -33,10 +32,10 @@ const HomeComponent = () => {
         <ExComponent />
         <MyPage />
         <MyPages />
-        <MyPageTwo />
         <PropsOneComp judul="Beauty and the Beast" deskripsi="beruk" />
         <PropsOneComp judul="Maleficient" deskripsi="kalong" />
         <PropsOneComp judul="The little Mermaid" deskripsi="dugong" />
+        <MyPageTwo />
       </div>
     </div>
   );
