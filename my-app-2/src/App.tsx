@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import HomeComponent from "./component/HomeComponent";
 import ContactComp from "./component/ContactComp";
+
 // import LoginPage from "./LoginPage";
 // import QuotePage from "./QuotePage";
 // import { Link, Route, Routes } from "react-router-dom";
