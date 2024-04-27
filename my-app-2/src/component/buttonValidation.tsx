@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { userProps } from "../page/Example";
 
 export default function MyPageTwo() {
   const [name, setName] = useState<string>("");
   const [errorMessageName, setErrorMessageName] = useState<string>("");
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
+
+  const [page, setPage] = useState<string>("firstPage");
 
   function handleSubmit(event: any) {
     event.preventDefault(); //agar tidak ke reload
@@ -16,8 +19,10 @@ export default function MyPageTwo() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="text-left">
           <label>Nama: </label>
+        </div>
+        <div>
           <input
             type="text"
             placeholder="Input Your name"
@@ -33,11 +38,13 @@ export default function MyPageTwo() {
             }}
           />
           <br />
-          <> {errorMessageName}</>{" "}
+          <> {errorMessageName}</>
+          {/* <button disabled={name.length < 3}>Click me</button> */}
         </div>
-        {/* <button disabled={name.length < 3}>Click me</button> */}
-        <div>
+        <div className="text-left">
           <label>Email: </label>
+        </div>
+        <div>
           <input
             type="text"
             placeholder="Input Your Email"
@@ -55,9 +62,10 @@ export default function MyPageTwo() {
           <br />
           <> {errorMessageEmail}</>
         </div>
-
-        <div>
+        <div className="text-left">
           <label>Password</label>
+        </div>
+        <div>
           <input
             type="Password"
             placeholder="Create Your Password"
@@ -74,27 +82,37 @@ export default function MyPageTwo() {
           />
           <br />
           <> {errorMessagePassword}</>
+
+          <div className="text-left">
+            <label>Password</label>
+          </div>
+          <div>
+            <input
+              type="Password"
+              placeholder="Replay Youre creating password"
+              name="textExample"
+              onChange={(event) => {
+                const value = event.target.value;
+                if (value.length === 0) {
+                  setErrorMessagePassword("Cannot be empty!");
+                } else {
+                  setErrorMessagePassword("");
+                  setName(event.target.value);
+                }
+              }}
+            />
+            <br />
+            <> {errorMessagePassword}</>
+          </div>
+        </div>
+        <div className="text-left">
+          <label>Date of Birth :</label>
         </div>
         <div>
-          <label>Password</label>
-          <input
-            type="Password"
-            placeholder="Replay Youre creating password"
-            name="textExample"
-            onChange={(event) => {
-              const value = event.target.value;
-              if (value.length === 0) {
-                setErrorMessagePassword("Cannot be empty!");
-              } else {
-                setErrorMessagePassword("");
-                setName(event.target.value);
-              }
-            }}
-          />
-          <br />
-          <> {errorMessagePassword}</>
+          <input type="Date" value="YYYY/MM/DD" name="Date of Birth" />
         </div>
         <button
+          className="text-9x1 text-amber-700 bg-grey-300 "
           disabled={
             errorMessageName !== "" ||
             errorMessageEmail !== "" ||

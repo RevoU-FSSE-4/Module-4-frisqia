@@ -18,24 +18,25 @@ const HomeComponent = () => {
     <div>
       <HeaderComp />
       <div>
-        <h1>
+        {/* <h1>
           <Example name="cia" memberSince={2023} />
         </h1>
         <ExTwoComp />
         <h1>HOME</h1>
         <button onClick={handleClick}>Click Me!</button>
         {""}
-        {/* ini function parents */}
+        ini function parents
         <button onClick={() => alert("you click me!")}>Click Me!</button>
-        <FooterComponent />
+        
         <ButtonComponent />
         <ExComponent />
         <MyPage />
         <MyPages />
         <PropsOneComp judul="Beauty and the Beast" deskripsi="beruk" />
         <PropsOneComp judul="Maleficient" deskripsi="kalong" />
-        <PropsOneComp judul="The little Mermaid" deskripsi="dugong" />
+        <PropsOneComp judul="The little Mermaid" deskripsi="dugong" /> */}
         <MyPageTwo />
+        <FooterComponent />
       </div>
     </div>
   );
