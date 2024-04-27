@@ -5,10 +5,13 @@ import ContactComp from "./component/ContactComp";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 // import logo from "./logo.svg";
-// import LoginPage from "./LoginPage";
-import { Link, Route, Routes } from "react-router-dom";
+
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import QuotePage from "./page/QuotePage";
 import FooterComponent from "./component/FooterComponent";
+import RegisterForm from "./Assigment/RegisterForm";
+import LoginForm from "./Assigment/LoginForm";
+import PrivateRouter from "./Assigment/PrivateRouter";
 
 //import ExampleComp from "./example";
 
@@ -19,14 +22,17 @@ function App() {
         <h1 className="text-9x1 text-amber-700 underline">RevoU Form</h1>
         {/* <HomeComponent /> */}
         <div>
-          <nav>
-            <Link to="/Login">Home</Link>
-            <br />
-            <Link to="/Quote">Quote</Link>
+          <nav className="text-grey-700 underline">
+            <hr />
+            <Link to="/Register"> Form Register </Link>
+
+            <Link to="/Login"> Login</Link>
+
+            <Link to="/Dashbord"> test</Link>
           </nav>
           <Routes>
-            <Route path="/Login" element={<HomeComponent />}></Route>
-            <Route path="/Quote" element={<QuotePage />}></Route>
+            <Route path="/Register" element={<RegisterForm />}></Route>
+            <Route path="/Login" element={<LoginForm />}></Route>
           </Routes>
           <FooterComponent />
         </div>

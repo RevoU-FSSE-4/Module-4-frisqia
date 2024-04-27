@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { userProps } from "../page/Example";
+import { useNavigate } from "react-router-dom";
 
 export default function MyPageTwo() {
   const [name, setName] = useState<string>("");
   const [errorMessageName, setErrorMessageName] = useState<string>("");
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
-
   const [page, setPage] = useState<string>("firstPage");
 
+  const navigate = useNavigate();
   function handleSubmit(event: any) {
-    event.preventDefault(); //agar tidak ke reload
+    localStorage.setItem("isLogin", "true");
+    // event.preventDefault(); //agar tidak ke reload
     //const formData = new FormData(event.target);
     alert(name);
     // console.log(formData.get("textExample"));
@@ -72,7 +74,7 @@ export default function MyPageTwo() {
             name="textExample"
             onChange={(event) => {
               const value = event.target.value;
-              if (value.length === 0) {
+              if (value.length < 2) {
                 setErrorMessagePassword("Cannot be empty!");
               } else {
                 setErrorMessagePassword("");
@@ -93,7 +95,7 @@ export default function MyPageTwo() {
               name="textExample"
               onChange={(event) => {
                 const value = event.target.value;
-                if (value.length === 0) {
+                if (value.length < 0) {
                   setErrorMessagePassword("Cannot be empty!");
                 } else {
                   setErrorMessagePassword("");
@@ -109,7 +111,7 @@ export default function MyPageTwo() {
           <label>Date of Birth :</label>
         </div>
         <div>
-          <input type="Date" value="YYYY/MM/DD" name="Date of Birth" />
+          <input type="Date" name="Date of Birth" />
         </div>
         <button
           className="text-9x1 text-amber-700 bg-grey-300 "

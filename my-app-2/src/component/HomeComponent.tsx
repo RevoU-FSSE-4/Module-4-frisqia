@@ -18,7 +18,7 @@ const HomeComponent = () => {
       <HeaderComp />
       <h1 className="text-9x1 text-blue-300">Register</h1>
       <div>
-        {/* <h1>
+        <h1>
           <Example name="cia" memberSince={2023} />
         </h1>
         <ExTwoComp />
@@ -27,14 +27,13 @@ const HomeComponent = () => {
         {""}
         ini function parents
         <button onClick={() => alert("you click me!")}>Click Me!</button>
-        
         <ButtonComponent />
         <ExComponent />
         <MyPage />
         <MyPages />
         <PropsOneComp judul="Beauty and the Beast" deskripsi="beruk" />
         <PropsOneComp judul="Maleficient" deskripsi="kalong" />
-        <PropsOneComp judul="The little Mermaid" deskripsi="dugong" /> */}
+        <PropsOneComp judul="The little Mermaid" deskripsi="dugong" />
         <MyPageTwo />
       </div>
     </div>
