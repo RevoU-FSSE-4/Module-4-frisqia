@@ -9,7 +9,11 @@ function QuotePage() {
   const [quote, setQuote] = useState<QuoteRandom>({ text: "", author: "" });
   return (
     <>
-      <h1>INI QUOTE PAGE</h1>
+      <h1>
+        Allah never created something without any reason, ask Allah everything,
+        and Allah will answer, united yourself with the universe, pay attention
+        with the vibration and frequencies
+      </h1>
     </>
   );
 }

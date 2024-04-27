@@ -8,6 +8,7 @@ import * as Yup from "yup";
 // import LoginPage from "./LoginPage";
 import { Link, Route, Routes } from "react-router-dom";
 import QuotePage from "./page/QuotePage";
+import FooterComponent from "./component/FooterComponent";
 
 //import ExampleComp from "./example";
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/Login" element={<HomeComponent />}></Route>
             <Route path="/Quote" element={<QuotePage />}></Route>
           </Routes>
+          <FooterComponent />
         </div>
       </header>
     </div>

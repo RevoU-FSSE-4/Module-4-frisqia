@@ -1,5 +1,4 @@
 import React from "react";
-import FooterComponent from "./FooterComponent";
 import HeaderComp from "./HeaderComp";
 import Example from "../page/Example";
 import ButtonComponent from "./ButtonComponent";
@@ -37,7 +36,6 @@ const HomeComponent = () => {
         <PropsOneComp judul="Maleficient" deskripsi="kalong" />
         <PropsOneComp judul="The little Mermaid" deskripsi="dugong" /> */}
         <MyPageTwo />
-        <FooterComponent />
       </div>
     </div>
   );
