@@ -18,10 +18,14 @@ function App() {
         <h1 className="text-9x1 text-amber-700 underline">RevoU Form</h1>
         {/* <HomeComponent /> */}
         <div>
-          
+          <nav>
+            <Link to="/Login">Home</Link>
+            <br />
+            <Link to="/Quote">Quote</Link>
+          </nav>
           <Routes>
-            <Route path="/Login" Component={HomeComponent}></Route>
-            <Route path="/Quote" Component={QuotePage}></Route>
+            <Route path="/Login" element={<HomeComponent />}></Route>
+            <Route path="/Quote" element={<QuotePage />}></Route>
           </Routes>
         </div>
       </header>
