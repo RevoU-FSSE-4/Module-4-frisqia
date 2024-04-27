@@ -6,8 +6,8 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 // import logo from "./logo.svg";
 // import LoginPage from "./LoginPage";
-// import QuotePage from "./QuotePage";
-// import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import QuotePage from "./page/QuotePage";
 
 //import ExampleComp from "./example";
 
@@ -15,8 +15,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="text-9x1 text-blue-300 underline">Registrer</h1>
-        <HomeComponent />
+        <h1 className="text-9x1 text-amber-700 underline">RevoU Form</h1>
+        {/* <HomeComponent /> */}
+        <div>
+          
+          <Routes>
+            <Route path="/Login" Component={HomeComponent}></Route>
+            <Route path="/Quote" Component={QuotePage}></Route>
+          </Routes>
+        </div>
       </header>
     </div>
   );

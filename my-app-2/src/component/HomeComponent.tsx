@@ -17,6 +17,7 @@ const HomeComponent = () => {
   return (
     <div>
       <HeaderComp />
+      <h1 className="text-9x1 text-blue-300">Register</h1>
       <div>
         {/* <h1>
           <Example name="cia" memberSince={2023} />
