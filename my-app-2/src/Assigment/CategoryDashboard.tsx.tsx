@@ -1,11 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserProfileProviderContext from "./userProfileProviderContext";
-import CategoryProviderContext from "./CategoryProviderContext";
+// import UserProfileProviderContext from "./userProfileProviderContext";
+// import CategoryProviderContext from "./CategoryProviderContext";
+
+interface UserProfile{
+  name:string;
+  email: string;
+  categories:string
+}
 
 function CategoryDashboard() {
-  const { name, email, setUserProfile } = useContext();
-  const { categories, setCategories } = useContext();
+  const {setUserProfile } = useState<UserProfile>({
+    name:"",
+    email:"",
+    categories: "",
+  });
+  const { categories, setCategories } = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   async function fetchCategories() {
@@ -109,7 +119,7 @@ function CategoryDashboard() {
         <>
           <nav>
             <div>
-              <span>Hello, {name!}</span>
+              <span>Hello, {setUserProfile.name!}</span>
               <div>
                 <ul>
                   <li>
@@ -121,7 +131,7 @@ function CategoryDashboard() {
           </nav>
           <CategoryForm fetchCategories={fetchCategories}={setIsLoadingCategories}/>
           {isLoadingCategories && <h1>Loading Categories...</h1>}
-          {categories.length !== 0 && isLoadingCategories == false && (
+          {setUserProfile.length !== 0 && isLoadingCategories == false && (
             <div>
               <table>
                 <thead>
