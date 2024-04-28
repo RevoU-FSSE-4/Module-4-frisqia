@@ -34,7 +34,7 @@ function App() {
           <Routes>
             <Route path="/Register" element={<RegisterForm />}></Route>
             <Route path="/Login" element={<LoginForm />}></Route>
-            {/* <Route path="Dashboard" element={<CategoryDashboard />}></Route> */}
+            <Route path="Dashboard" element={<CategoryDashboard />}></Route>
           </Routes>
           <FooterComponent />
         </div>

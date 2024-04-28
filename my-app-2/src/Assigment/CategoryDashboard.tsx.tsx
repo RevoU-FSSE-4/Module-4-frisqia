@@ -131,7 +131,7 @@ function CategoryDashboard() {
           </nav>
           <CategoryForm fetchCategories={fetchCategories}={setIsLoadingCategories}/>
           {isLoadingCategories && <h1>Loading Categories...</h1>}
-          {setUserProfile.length !== 0 && isLoadingCategories == false && (
+          {categories.length !== 0 && isLoadingCategories == false && (
             <div>
               <table>
                 <thead>
