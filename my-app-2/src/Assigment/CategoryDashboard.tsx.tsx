@@ -135,13 +135,14 @@ function CategoryDashboard() {
                 <tbody>
                   {categories.map((cat) => {
                     return (
-                      <tr>
-                        <th>{cat.id}</th>
-                        <td>{cat.category_name}</td>
-                        <td>{cat.category_description}</td>
-                        <td>
-                          <button onClick={() => handleDelete(cat.id)}>
+                      <tr key={`${cat.id}-row`} className="bg-white border-b dark:bg-gray-800 dark:border-700">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" >{cat.id}</th>
+                        <td className="px-6 py-4">{cat.category_name}</td>
+                        <td className="px-6 py-4">{cat.category_description}</td>
+                        <td className="px-6 py-4">
                             {" "}
+                          <button onClick={() => handleDelete(cat.id)} className="text-white bg-red-700 hover:bg-800">
+                           
                             Delete
                           </button>
                         </td>
