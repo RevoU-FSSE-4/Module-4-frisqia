@@ -7,12 +7,14 @@ interface UserProfile {
 
 const UserProfileProviderContext = createContext<UserProfile | null>(null);
 
-export const UserProfileProvider = ({ children }: { children: React.ReactNode }) => {
+export const UserProfileProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
   useEffect(() => {
-    // You can add logic to fetch user profile data here if needed
-    // For example, by using localStorage or an API call
     const storedProfile = localStorage.getItem("userProfile");
     if (storedProfile) {
       setUserProfile(JSON.parse(storedProfile));
@@ -20,7 +22,9 @@ export const UserProfileProvider = ({ children }: { children: React.ReactNode })
   }, []);
 
   return (
-    <UserProfileProviderContext.Provider value={{ userProfile, setUserProfile }}>
+    <UserProfileProviderContext.Provider
+      value={{ userProfile, setUserProfile }}
+    >
       {children}
     </UserProfileProviderContext.Provider>
   );
