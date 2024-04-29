@@ -5,7 +5,10 @@ interface CategoryFormProps {
   setIsLoadingCategories: (isLoading: boolean) => void;
 }
 
-const CategoryForm: React.FC<CategoryFormProps> = ({ fetchCategories, setIsLoadingCategories }) => {
+const CategoryForm: React.FC<CategoryFormProps> = ({
+  fetchCategories,
+  setIsLoadingCategories,
+}) => {
   const [categoryName, setCategoryName] = useState("");
   const [categoryDescription, setCategoryDescription] = useState("");
 
@@ -20,7 +23,10 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ fetchCategories, setIsLoadi
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-        body: JSON.stringify({ category_name: categoryName, category_description: categoryDescription }),
+        body: JSON.stringify({
+          category_name: categoryName,
+          category_description: categoryDescription,
+        }),
       };
       const response = await fetch(
         "https://library-crud-sample.vercel.app/api/category",

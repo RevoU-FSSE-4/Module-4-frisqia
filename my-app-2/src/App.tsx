@@ -29,7 +29,7 @@ function App() {
 
             <Link to="/Login"> Login</Link>
 
-            <Link to="/Dashbord"> test</Link>
+            <Link to="/Dashbord"> Dashboard</Link>
           </nav>
           <Routes>
             <Route path="/Register" element={<RegisterForm />}></Route>
