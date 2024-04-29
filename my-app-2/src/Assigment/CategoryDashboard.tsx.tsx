@@ -1,23 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import UserProfileProviderContext from "./userProfileProviderContext";
-// import CategoryProviderContext from "./CategoryProviderContext";
+import CategoryForm from "./CategoryForm";
 
-interface UserProfile{
-  name:string;
+interface UserProfile {
+  name: string;
   email: string;
-  categories:string
+  categories: string[];
 }
 
 function CategoryDashboard() {
-  const {setUserProfile } = useState<UserProfile>({
-    name:"",
-    email:"",
-    categories: "",
+  const [userProfile, setUserProfile] = useState<UserProfile>({
+    name: "",
+    email: "",
+    categories: [],
   });
-  const { categories, setCategories } = useState();
+  const [categories, setCategories] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+
   async function fetchCategories() {
     try {
       let token = localStorage.getItem("token");
@@ -25,7 +25,7 @@ function CategoryDashboard() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer" + token,
+          Authorization: "Bearer " + token,
         },
       };
       const response = await fetch(
@@ -38,10 +38,11 @@ function CategoryDashboard() {
       const data = await response.json();
       setCategories(data);
       setIsLoadingCategories(false);
-    } catch (eror) {
-      alert(eror);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
     }
   }
+
   useEffect(() => {
     async function fetchUserProfile() {
       try {
@@ -49,8 +50,8 @@ function CategoryDashboard() {
         const options = {
           method: "GET",
           headers: {
-            "Context-Type": "application/json",
-            Authorization: "Bearer" + token,
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
           },
         };
         const response = await fetch(
@@ -63,31 +64,34 @@ function CategoryDashboard() {
         const data = await response.json();
         setUserProfile(data);
         setIsLoading(false);
-      } catch (eror) {
-        alert(eror);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
       }
     }
+
     fetchUserProfile();
     fetchCategories();
   }, []);
+
   const navigate = useNavigate();
+
   const handleLogOut = async () => {
     let token = localStorage.getItem("token");
     const options = {
       method: "DELETE",
       headers: {
-        "context-Type": "application/json",
-        Authorization: "Bearer" + token,
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
     };
     const response = await fetch(
       "https://library-crud-sample.vercel.app/api/user/logout",
       options
     );
-    const data = await response.json();
     localStorage.removeItem("token");
     navigate("/Login");
   };
+
   const handleDelete = async (id: string) => {
     try {
       setIsLoadingCategories(true);
@@ -96,30 +100,33 @@ function CategoryDashboard() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer" + token,
+          Authorization: "Bearer " + token,
         },
       };
       const response = await fetch(
-        "https://library-crud-sample.vercel.app/api/category/${id}",
+        `https://library-crud-sample.vercel.app/api/category/${id}`,
         options
       );
       if (!response.ok) {
         throw new Error("Failed to Delete Category");
       }
-      const data = await response.json();
       fetchCategories();
-    } catch (eror) {}
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    } finally {
+      setIsLoadingCategories(false);
+    }
   };
 
   return (
     <div>
-      {isLoading == true ? (
+      {isLoading ? (
         <h1>Loading....</h1>
       ) : (
         <>
           <nav>
             <div>
-              <span>Hello, {setUserProfile.name!}</span>
+              <span>Hello, {userProfile.name}</span>
               <div>
                 <ul>
                   <li>
@@ -129,9 +136,12 @@ function CategoryDashboard() {
               </div>
             </div>
           </nav>
-          <CategoryForm fetchCategories={fetchCategories}={setIsLoadingCategories}/>
+          <CategoryForm
+            fetchCategories={fetchCategories}
+            setIsLoadingCategories={setIsLoadingCategories}
+          />
           {isLoadingCategories && <h1>Loading Categories...</h1>}
-          {categories.length !== 0 && isLoadingCategories == false && (
+          {!isLoadingCategories && categories.length > 0 && (
             <div>
               <table>
                 <thead>
@@ -143,22 +153,29 @@ function CategoryDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {categories.map((cat) => {
-                    return (
-                      <tr key={`${cat.id}-row`} className="bg-white border-b dark:bg-gray-800 dark:border-700">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" >{cat.id}</th>
-                        <td className="px-6 py-4">{cat.category_name}</td>
-                        <td className="px-6 py-4">{cat.category_description}</td>
-                        <td className="px-6 py-4">
-                            {" "}
-                          <button onClick={() => handleDelete(cat.id)} className="text-white bg-red-700 hover:bg-800">
-                           
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {categories.map((cat) => (
+                    <tr
+                      key={`${cat.id}-row`}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-700"
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {cat.id}
+                      </th>
+                      <td className="px-6 py-4">{cat.category_name}</td>
+                      <td className="px-6 py-4">{cat.category_description}</td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => handleDelete(cat.id)}
+                          className="text-white bg-red-700 hover:bg-800"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -168,4 +185,5 @@ function CategoryDashboard() {
     </div>
   );
 }
+
 export default CategoryDashboard;
