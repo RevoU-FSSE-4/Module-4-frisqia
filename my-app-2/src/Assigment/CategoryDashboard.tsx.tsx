@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryForm from "./CategoryForm";
 
+interface Category {
+  id: string;
+  category_name: string;
+  category_description: string;
+  is_active: boolean;
+}
 interface UserProfile {
   name: string;
   email: string;
-  categories: string[];
 }
-
 function CategoryDashboard() {
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: "",
     email: "",
-    categories: [],
   });
-  const [categories, setCategories] = useState<any[]>([]);
+
+  const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
   async function fetchCategories() {
     try {
-      let token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       const options = {
         method: "GET",
         headers: {
@@ -32,11 +36,14 @@ function CategoryDashboard() {
         "https://library-crud-sample.vercel.app/api/category",
         options
       );
+
       if (!response.ok) {
         throw new Error("Failed to fetch Categories");
       }
+
       const data = await response.json();
       setCategories(data);
+      console.log(data);
       setIsLoadingCategories(false);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -46,7 +53,7 @@ function CategoryDashboard() {
   useEffect(() => {
     async function fetchUserProfile() {
       try {
-        let token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
         const options = {
           method: "GET",
           headers: {
@@ -58,10 +65,13 @@ function CategoryDashboard() {
           "https://library-crud-sample.vercel.app/api/user/profile",
           options
         );
+
         if (!response.ok) {
           throw new Error("Failed to fetch User Profile");
         }
+
         const data = await response.json();
+
         setUserProfile(data);
         setIsLoading(false);
       } catch (error) {
@@ -76,26 +86,8 @@ function CategoryDashboard() {
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
-    let token = localStorage.getItem("token");
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    };
-    const response = await fetch(
-      "https://library-crud-sample.vercel.app/api/user/logout",
-      options
-    );
-    localStorage.removeItem("token");
-    navigate("/Login");
-  };
-
-  const handleDelete = async (id: string) => {
     try {
-      setIsLoadingCategories(true);
-      let token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       const options = {
         method: "DELETE",
         headers: {
@@ -103,16 +95,48 @@ function CategoryDashboard() {
           Authorization: "Bearer " + token,
         },
       };
+
+      const response = await fetch(
+        "https://library-crud-sample.vercel.app/api/user/logout",
+        options
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to logout");
+      }
+
+      localStorage.removeItem("token");
+      navigate("/Login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      setIsLoadingCategories(true);
+      const token = localStorage.getItem("token");
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+
       const response = await fetch(
         `https://library-crud-sample.vercel.app/api/category/${id}`,
         options
       );
+
       if (!response.ok) {
         throw new Error("Failed to Delete Category");
       }
+
       fetchCategories();
     } catch (error) {
       console.error("Error deleting category:", error);
+      alert(error);
     } finally {
       setIsLoadingCategories(false);
     }
@@ -154,23 +178,12 @@ function CategoryDashboard() {
                 </thead>
                 <tbody>
                   {categories.map((cat) => (
-                    <tr
-                      key={`${cat.id}-row`}
-                      className=""
-                    >
-                      <th
-                        scope="row"
-                        className=""
-                      >
-                        {cat.id}
-                      </th>
-                      <td className="">{cat.category_name}</td>
-                      <td className="">{cat.category_description}</td>
-                      <td className="px-6 py-4">
-                        <button
-                          onClick={() => handleDelete(cat.id)}
-                          className=""
-                        >
+                    <tr key={cat.id}>
+                      <td>{cat.id}</td>
+                      <td>{cat.category_name}</td>
+                      <td>{cat.category_description}</td>
+                      <td>
+                        <button onClick={() => handleDelete(cat.id)}>
                           Delete
                         </button>
                       </td>
