@@ -6,7 +6,9 @@ import RegisterForm from "./Assigment/RegisterForm";
 import LoginForm from "./Assigment/LoginForm";
 import PrivateRouter from "./Assigment/PrivateRouter";
 import CategoryDashboard from "./Assigment/CategoryDashboard.tsx";
+
 import QuotePage from "./page/QuotePage";
+import HeaderComp from "./component/HeaderComp";
 
 //import ExampleComp from "./example";
 
@@ -16,8 +18,10 @@ function App() {
       {/* Header */}
       <header className="App-header">
         {/* Judul */}
-        <h1 className="text-3xl text-amber-700 underline mb-6">RevoU Form</h1>
-
+        <h1 className="text-3xl text-amber-700 underline mb-6">
+          Database Form
+        </h1>
+        <HeaderComp />
         {/* Navigasi */}
         <nav className="text-gray-700 underline ">
           <hr />
