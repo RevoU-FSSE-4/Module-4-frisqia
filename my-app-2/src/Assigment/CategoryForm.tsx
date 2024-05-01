@@ -36,13 +36,16 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
       };
 
       const response = await fetch(
-        "https://library-crud-sample.vercel.app/api/category",
+        "https://library-crud-sample.vercel.app/api/category/create",
         options
       );
 
       if (!response.ok) {
         throw new Error("Failed to add Category");
       }
+      const data = await response.json();
+      // console.log(response);
+      // console.log(data);
 
       fetchCategories(); // Memanggil fungsi untuk memperbarui daftar kategori setelah penambahan
       setCategoryName(""); // Mengosongkan input nama kategori setelah submit

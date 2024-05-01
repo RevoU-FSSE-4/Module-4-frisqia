@@ -128,7 +128,7 @@ function CategoryDashboard() {
       };
 
       const response = await fetch(
-        `https://library-crud-sample.vercel.app/api/category/${id}`,
+        `https://library-crud-sample.vercel.app/api/category/:id`,
         options
       );
 
@@ -170,7 +170,7 @@ function CategoryDashboard() {
             </div>
           </nav>
           <CategoryForm
-          // form penulisan kategorinya di file CategoryForm.tsx
+            // form penulisan kategorinya di file CategoryForm.tsx
             fetchCategories={fetchCategories}
             setIsLoadingCategories={setIsLoadingCategories}
           />
@@ -181,6 +181,7 @@ function CategoryDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
+                  {/* bentuk tabelnya disini */}
                   <tr>
                     <th className="py-2">Category ID</th>
                     <th className="py-2">Category Name</th>
@@ -190,9 +191,8 @@ function CategoryDashboard() {
                 </thead>
                 <tbody>
                   {categories.map(
-                    (
-                      cat // mapping ini untuk meletakan posisi data yang dimasukkan sesuai tabel yang di buat di thead
-                    ) => (
+                    // mapping ini untuk meletakan posisi data yang dimasukkan sesuai tabel yang di buat di thead
+                    (cat) => (
                       <tr key={cat.id}>
                         <td className="border px-4 py-2">{cat.id}</td>
                         <td className="border px-4 py-2">
