@@ -56,26 +56,40 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
 
   // Mengembalikan tampilan form untuk input kategori
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Category Name:
-        <input
-          type="text"
-          value={categoryName}
-          onChange={(e) => setCategoryName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Category Description:
-        <input
-          type="text"
-          value={categoryDescription}
-          onChange={(e) => setCategoryDescription(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Add Category</button>{" "}
+    <form onSubmit={handleSubmit} className="my-4">
+      {/* Input untuk nama kategori */}
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Category Name:
+          <input
+            type="text"
+            value={categoryName}
+            onChange={(e) => setCategoryName(e.target.value)}
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </label>
+      </div>
+      {/* Input untuk deskripsi kategori */}
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Category Description:
+          <input
+            type="text"
+            value={categoryDescription}
+            onChange={(e) => setCategoryDescription(e.target.value)}
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </label>
+      </div>
+      {/* Tombol untuk mengirimkan formulir kategori */}
+      <button
+        type="submit"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Add Category
+      </button>{" "}
       {/* Tombol untuk mengirimkan formulir kategori */}
     </form>
   );

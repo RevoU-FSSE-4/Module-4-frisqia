@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryForm from "./CategoryForm";
 
 interface Category {
+  //komponen server kategorinya ka abi
   id: string;
   category_name: string;
   category_description: string;
@@ -18,9 +19,9 @@ function CategoryDashboard() {
     email: "",
   });
 
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]); //interface komponen dari Category
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true); //jika sedang loading seperti lin 167
 
   async function fetchCategories() {
     try {
@@ -33,7 +34,7 @@ function CategoryDashboard() {
         },
       };
       const response = await fetch(
-        "https://library-crud-sample.vercel.app/api/category",
+        "https://library-crud-sample.vercel.app/api/category", //api server kategori
         options
       );
 
@@ -67,12 +68,14 @@ function CategoryDashboard() {
         );
 
         if (!response.ok) {
+          // kalau responnya tidak ok maka dia akan eror
           throw new Error("Failed to fetch User Profile");
         }
 
         const data = await response.json();
 
         setUserProfile(data);
+        //console.log(data); email dan nama yang terdaftar
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching user profile:", error);
@@ -143,18 +146,24 @@ function CategoryDashboard() {
   };
 
   return (
-    <div>
+    <div className="max-w-3xl mx-auto mt-8">
       {isLoading ? (
         <h1>Loading....</h1>
       ) : (
         <>
-          <nav>
+          <nav className="flex justify-between items-center mb-2">
             <div>
-              <span>Hello, {userProfile.name}</span>
+              <span className="text-center">Hello, {userProfile.name}</span>
               <div>
                 <ul>
                   <li>
-                    <button onClick={handleLogOut}>Logout</button>
+                    <button
+                      onClick={handleLogOut}
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Logout
+                    </button>
+                    {/* ketika di klik akan keluar dari web  */}
                   </li>
                 </ul>
               </div>
@@ -165,30 +174,43 @@ function CategoryDashboard() {
             setIsLoadingCategories={setIsLoadingCategories}
           />
           {isLoadingCategories && <h1>Loading Categories...</h1>}
+          {/* sebelum menjalankan proses dia akan loading terlebih dahulu dan ini pemberitahuannya */}
           {!isLoadingCategories && categories.length > 0 && (
-            <div>
-              <table>
+            //  setelah berhasil di proses maka akan masuk kategori yang diinput akan masuk ke dalam tabel
+            <div className="overflow-x-auto">
+              <table className="w-full">
                 <thead>
                   <tr>
-                    <th>Category ID</th>
-                    <th>Category Name</th>
-                    <th>Category Description</th>
-                    <th>Actions</th>
+                    <th className="py-2">Category ID</th>
+                    <th className="py-2">Category Name</th>
+                    <th className="py-2">Category Description</th>
+                    <th className="py-2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {categories.map((cat) => (
-                    <tr key={cat.id}>
-                      <td>{cat.id}</td>
-                      <td>{cat.category_name}</td>
-                      <td>{cat.category_description}</td>
-                      <td>
-                        <button onClick={() => handleDelete(cat.id)}>
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {categories.map(
+                    (
+                      cat // mapping ini untuk meletakan posisi data yang dimasukkan sesuai tabel yang di buat di thead
+                    ) => (
+                      <tr key={cat.id}>
+                        <td className="border px-4 py-2">{cat.id}</td>
+                        <td className="border px-4 py-2">
+                          {cat.category_name}
+                        </td>
+                        <td className="border px-4 py-2 text-center">
+                          {cat.category_description}
+                        </td>
+                        <td className="border px-4 py-2">
+                          <button
+                            onClick={() => handleDelete(cat.id)}
+                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
