@@ -1,18 +1,12 @@
-import React, { useState } from "react";
 import "./App.css";
-import HomeComponent from "./component/HomeComponent";
-import ContactComp from "./component/ContactComp";
-import { Field, Formik, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-// import logo from "./logo.svg";
 
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import QuotePage from "./page/QuotePage";
 import FooterComponent from "./component/FooterComponent";
 import RegisterForm from "./Assigment/RegisterForm";
 import LoginForm from "./Assigment/LoginForm";
 import PrivateRouter from "./Assigment/PrivateRouter";
 import CategoryDashboard from "./Assigment/CategoryDashboard.tsx";
+import QuotePage from "./page/QuotePage";
 
 //import ExampleComp from "./example";
 
@@ -35,10 +29,11 @@ function App() {
           <Link to="/Login" className="mr-4 hover:text-blue-600">
             Login
           </Link>
-          {/* Link ke Dashboard */}
-          {/* <Link to="/Dashboard">Dashboard</Link> */}
-        </nav>
 
+          <Link to="/Dashboard" className="mr-4 hover:text-blue-600">
+            Dashboard
+          </Link>
+        </nav>
         {/* Routes */}
         <Routes>
           {/* Route untuk Register */}
@@ -46,11 +41,11 @@ function App() {
           {/* Route untuk Login */}
           <Route path="/Login" element={<LoginForm />} />
           {/* PrivateRoute untuk melindungi rute Dashboard */}
-          {/* <Route path="/Login" element={<PrivateRouter />}> */}
-          <Route path="/Dashboard" element={<CategoryDashboard />} />
-          {/* </Route> */}
+          <Route path="/" Component={PrivateRouter}>
+            <Route path="/Dashboard" Component={CategoryDashboard} />
+            <Route path="/Quote" Component={QuotePage} />
+          </Route>
         </Routes>
-
         {/* Footer */}
         <FooterComponent />
       </header>
