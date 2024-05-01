@@ -43,7 +43,6 @@ function App() {
           {/* PrivateRoute untuk melindungi rute Dashboard */}
           <Route path="/" Component={PrivateRouter}>
             <Route path="/Dashboard" Component={CategoryDashboard} />
-            <Route path="/Quote" Component={QuotePage} />
           </Route>
         </Routes>
         {/* Footer */}
