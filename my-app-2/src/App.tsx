@@ -18,26 +18,41 @@ import CategoryDashboard from "./Assigment/CategoryDashboard.tsx";
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      {/* Header */}
       <header className="App-header">
-        <h1 className="text-9x1 text-amber-700 underline">RevoU Form</h1>
-        {/* <HomeComponent /> */}
-        <div>
-          <nav className="text-grey-700 underline">
-            <hr />
-            <Link to="/Register"> Form Register </Link>
+        {/* Judul */}
+        <h1 className="text-3xl text-amber-700 underline mb-6">RevoU Form</h1>
 
-            <Link to="/Login"> Login</Link>
+        {/* Navigasi */}
+        <nav className="text-gray-700 underline ">
+          <hr />
+          {/* Link ke form Register */}
+          <Link to="/Register" className="mr-4 hover:text-blue-600">
+            Form Register
+          </Link>
+          {/* Link ke halaman Login */}
+          <Link to="/Login" className="mr-4 hover:text-blue-600">
+            Login
+          </Link>
+          {/* Link ke Dashboard */}
+          {/* <Link to="/Dashboard">Dashboard</Link> */}
+        </nav>
 
-            <Link to="/Dashbord"> Dashboard</Link>
-          </nav>
-          <Routes>
-            <Route path="/Register" element={<RegisterForm />}></Route>
-            <Route path="/Login" element={<LoginForm />}></Route>
-            <Route path="Dashboard" element={<CategoryDashboard />}></Route>
-          </Routes>
-          <FooterComponent />
-        </div>
+        {/* Routes */}
+        <Routes>
+          {/* Route untuk Register */}
+          <Route path="/Register" element={<RegisterForm />} />
+          {/* Route untuk Login */}
+          <Route path="/Login" element={<LoginForm />} />
+          {/* PrivateRoute untuk melindungi rute Dashboard */}
+          {/* <Route path="/Login" element={<PrivateRouter />}> */}
+          <Route path="/Dashboard" element={<CategoryDashboard />} />
+          {/* </Route> */}
+        </Routes>
+
+        {/* Footer */}
+        <FooterComponent />
       </header>
     </div>
   );

@@ -170,6 +170,7 @@ function CategoryDashboard() {
             </div>
           </nav>
           <CategoryForm
+          // form penulisan kategorinya di file CategoryForm.tsx
             fetchCategories={fetchCategories}
             setIsLoadingCategories={setIsLoadingCategories}
           />

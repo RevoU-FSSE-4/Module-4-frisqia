@@ -72,7 +72,7 @@ function LoginForm() {
         name="email"
         onChange={formik.handleChange}
         value={formik.values.email}
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
       {formik.touched.email && formik.errors.email ? (
         <div className="text-red-500">{formik.errors.email}</div>
@@ -86,17 +86,20 @@ function LoginForm() {
         name="password"
         onChange={formik.handleChange}
         value={formik.values.password}
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
       {formik.touched.password && formik.errors.password ? (
         <div className="text-red-500">{formik.errors.password}</div>
       ) : null}
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        Submit
-      </button>
+      <br />
+      <div>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

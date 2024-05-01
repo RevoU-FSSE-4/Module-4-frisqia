@@ -74,7 +74,7 @@ function RegisterForm() {
         name="name"
         onChange={formik.handleChange}
         value={formik.values.name}
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-3 py-2 mb-4"
       />
       {formik.touched.name && formik.errors.name ? (
         <div className="text-red-500">{formik.errors.name}</div>
@@ -88,7 +88,7 @@ function RegisterForm() {
         name="email"
         onChange={formik.handleChange}
         value={formik.values.email}
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
       {formik.touched.email && formik.errors.email ? (
         <div className="text-red-500">{formik.errors.email}</div>
@@ -102,7 +102,7 @@ function RegisterForm() {
         name="password"
         onChange={formik.handleChange}
         value={formik.values.password}
-        className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
       {formik.touched.password && formik.errors.password ? (
         <div className="text-red-500">{formik.errors.password}</div>
